@@ -25,5 +25,7 @@
   ```
     php artisan guess:number
    ```
-   
+
+ ##Number guess dialog
+  <p align="center"><img src="../master/public/images/screen1.png" width="400"></p>
  
