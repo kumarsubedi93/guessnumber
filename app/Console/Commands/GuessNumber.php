@@ -45,7 +45,7 @@ class GuessNumber extends Command
             $computerGuess = $this->guessnumber->computerGuessNumber();
             $computerResult = $this->guessnumber->computerGenerateResult($userGuess, $computerGuess);
             $storePayload = [
-                'move_number' => 1,
+                'move_number' => $this->guessnumber->getMoveNumber(),
                 'guess_value' => $userGuess,
                 'generated_value' => $computerGuess,
                 'computer_answer' => $computerResult

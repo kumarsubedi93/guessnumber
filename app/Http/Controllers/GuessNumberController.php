@@ -20,7 +20,7 @@ class GuessNumberController extends Controller
     public function getGuessHistory(Request $request)
     {
         if ($request->ajax()) {
-            $data = GuessNumber::select('game_id', 'move_number', 'guess_value', 'generated_value', 'computer_answer')->orderBy('game_id', 'desc');
+            $data = GuessNumber::select('game_id', 'move_number', 'guess_value', 'generated_value', 'computer_answer');
             return Datatables::of($data)->make(true);
         }
         return view('history');

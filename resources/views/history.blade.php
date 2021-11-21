@@ -47,6 +47,12 @@
             display: flex;
             justify-content: space-between;
         }
+
+        @media (max-width: 1200px) {
+            .card-body {
+                overflow-x: auto;
+            }
+        }
     </style>
     <link href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet"/>
 @endsection
@@ -56,6 +62,7 @@
         $('#guessHistory').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: '{{ route('guess-history') }}',
             columns: [
                 {data: 'game_id', name: 'game_id'},
@@ -67,7 +74,6 @@
             initComplete: function () {
                 this.api().columns().every(function () {
                     var column = this;
-                    console.log(column.footer())
                     var input = document.createElement("input");
                     $(input).appendTo($(column.footer()).empty())
                         .on('change', function () {

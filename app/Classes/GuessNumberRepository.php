@@ -9,14 +9,12 @@ class GuessNumberRepository implements GuessNumberInterface
 {
     public function getMoveNumber()
     {
-        $move = session()->get('usermove');
-        if ($move) {
-            $movei = $move + 1;
-            session()->forget('usermove');
-            session()->put('usermove', $movei);
-            return $movei;
+        $guessHistory = GuessNumber::orderBy('game_id', 'desc')->first();
+        if ($guessHistory && $guessHistory->computer_answer == 'bingo') {
+            return 1;
+        } else if ($guessHistory) {
+            return (int)$guessHistory->move_number + 1;
         }
-        session()->put('usermove', 1);
         return 1;
     }
 
